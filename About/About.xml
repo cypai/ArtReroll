@@ -5,12 +5,16 @@
     <author>pipai</author>
     <packageId>pipai.artreroll</packageId>
     <supportedVersions>
-        <li>1.0</li>
-        <li>1.1</li>
         <li>1.2</li>
     </supportedVersions>
     <description>
         Reroll art descriptions.
+
+        Hate that the art for your new masterwork has nothing to do with your colony?
+
+        Reroll your art! Completely random, though that might change if I put more effort into it.
+
+        Github link: https://github.com/cypai/ArtReroll
 	</description>
 
 </ModMetaData>
