@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ModMetaData>
+
+	<name>Art Reroll</name>
+    <author>pipai</author>
+    <packageId>pipai.artreroll</packageId>
+    <supportedVersions>
+        <li>1.0</li>
+        <li>1.1</li>
+        <li>1.2</li>
+    </supportedVersions>
+    <description>
+        Reroll art descriptions.
+	</description>
+
+</ModMetaData>
