@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ModMetaData>
 
-	<name>Art Reroll</name>
+    <name>Art Reroll</name>
     <author>pipai</author>
     <packageId>pipai.artreroll</packageId>
     <supportedVersions>
@@ -15,6 +15,18 @@
         Reroll your art! Completely random, though that might change if I put more effort into it.
 
         Github link: https://github.com/cypai/ArtReroll
-	</description>
+    </description>
+    <modDependencies>
+        <li>
+            <packageId>brrainz.harmony</packageId>
+            <displayName>Harmony</displayName>
+            <downloadUrl>https://github.com/pardeike/HarmonyRimWorld</downloadUrl>
+        </li>
+    </modDependencies>
+    <loadAfter>
+        <li>brrainz.harmony</li>
+        <li>Ludeon.RimWorld</li>
+        <li>Ludeon.RimWorld.Royalty</li>
+    </loadAfter>
 
 </ModMetaData>
