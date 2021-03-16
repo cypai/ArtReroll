@@ -52,7 +52,7 @@ namespace ArtReroll
                     FloatMenuOption option = new FloatMenuOption(taleDef.defName, delegate
                     {
                         var tales = Find.TaleManager.AllTalesListForReading.Where(it => it.def.defName == taleDef.defName);
-                        var selected = tales.RandomElementByWeightWithFallback(it => it.InterestLevel);
+                        var selected = tales.RandomElementByWeightWithFallback(it => it.InterestLevel + (1 / (1 + it.Uses)));
                         InitializeArt(art, selected);
                     });
                     options.Add(option);
@@ -69,7 +69,7 @@ namespace ArtReroll
                     FloatMenuOption option = new FloatMenuOption(pawn.Name.ToStringShort, delegate
                     {
                         var tales = Find.TaleManager.AllTalesListForReading.Where(it => it.Concerns(pawn));
-                        var selected = tales.RandomElementByWeightWithFallback(it => it.InterestLevel);
+                        var selected = tales.RandomElementByWeightWithFallback(it => it.InterestLevel + (1 / (1 + it.Uses)));
                         InitializeArt(art, selected);
                     });
                     options.Add(option);
