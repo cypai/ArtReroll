@@ -99,7 +99,7 @@ namespace ArtReroll
             }
             var traverse = Traverse.Create(comp);
             traverse.Field("taleRef").SetValue(taleRef);
-            traverse.Field("titleInt").SetValue(new TaggedString(traverse.Method("GenerateTitle").GetValue<string>()));
+            traverse.Field("titleInt").SetValue(new TaggedString(traverse.Method("GenerateTitle", ArtGenerationContext.Colony).GetValue<string>()));
         }
     }
 }
