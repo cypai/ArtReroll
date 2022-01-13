@@ -36,6 +36,13 @@ namespace ArtReroll
             }
             CompArt art = thing?.TryGetComp<CompArt>();
 
+
+            Rect titleRect = new Rect(10f, 250f, 100f, 20f);
+            if (Widgets.ButtonText(titleRect, "Reroll Title"))
+            {
+                InitTitle(art);
+            }
+
             Rect rect1 = new Rect(10f, 270f, 100f, 20f);
             if (Widgets.ButtonText(rect1, "Reroll"))
             {
@@ -100,6 +107,14 @@ namespace ArtReroll
             var traverse = Traverse.Create(comp);
             traverse.Field("taleRef").SetValue(taleRef);
             traverse.Field("titleInt").SetValue(new TaggedString(traverse.Method("GenerateTitle", ArtGenerationContext.Colony).GetValue<string>()));
+        }
+
+        private static void InitTitle(CompArt comp)
+        {
+            var traverseComp = Traverse.Create(comp);
+            var traverseTaleRef = Traverse.Create(comp.TaleRef);
+            traverseTaleRef.Field("seed").SetValue(traverseTaleRef.Field("seed").GetValue<int>() + 1);
+            traverseComp.Field("titleInt").SetValue(new TaggedString(traverseComp.Method("GenerateTitle", ArtGenerationContext.Colony).GetValue<string>()));
         }
     }
 }
