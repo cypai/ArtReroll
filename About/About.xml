@@ -13,13 +13,16 @@ Reroll art descriptions.
 
 Hate that the art for your new masterwork has nothing to do with your colony? Reroll your art!
 
-Three buttons available:
+5 buttons available:
+- Reroll title only
 - Random reroll (Completely random)
 - Specific reroll based on a situation (TaleDefs to be exact)
 - Specific reroll based on a colonist
+- Pick a colonist for the current Tale
 
-Note on the Specific Reroll buttons:
 The vanilla TaleTextGenerator has a 20% chance to generate non-tale-related text despite picking a relevant tale. I cannot control this without unduly hacking too much into vanilla behavior, which would be bad for compatibility reasons. Instead, just reroll again and see what you get.
+
+"Picking a colonist" uses the art's current TaleDef as a basis, except with the selected Colonist instead. If you want near-full control over the art description, this is the closest you can get in combination with the Title Reroll.
 
 This mod should be compatible with any other mods that add tales, as it reads from the TaleDef database.
 

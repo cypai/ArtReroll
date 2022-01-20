@@ -43,15 +43,35 @@ namespace ArtReroll
                 InitTitle(art);
             }
 
-            Rect rect1 = new Rect(10f, 270f, 100f, 20f);
-            if (Widgets.ButtonText(rect1, "Reroll"))
+            Rect randomRect = new Rect(10f, 270f, 100f, 20f);
+            if (Widgets.ButtonText(randomRect, "Reroll"))
             {
                 art.InitializeArt(ArtGenerationContext.Colony);
             }
 
             // The following are much more involved and cannot use the default behavior
-            Rect rect2 = new Rect(110f, 270f, 120f, 20f);
-            if (Widgets.ButtonText(rect2, "Reroll Specific"))
+            Rect spColonistRect = new Rect(110f, 250f, 240f, 20f);
+            if (Widgets.ButtonText(spColonistRect, "Pick Colonist for Current Tale"))
+            {
+                List<FloatMenuOption> options = new List<FloatMenuOption>();
+                foreach (Pawn pawn in from p in PawnsFinder.AllMapsCaravansAndTravelingTransportPods_Alive_Colonists orderby p.Name.ToStringShort select p)
+                {
+                    FloatMenuOption option = new FloatMenuOption(pawn.Name.ToStringShort, delegate
+                    {
+                        var traverse = Traverse.Create(art.TaleRef);
+                        var taleDef = traverse.Field("tale").GetValue<Tale>().def;
+                        var tales = Find.TaleManager.AllTalesListForReading
+                            .Where(it => it.Concerns(pawn) && it.def.defName == taleDef.defName);
+                        var selected = tales.RandomElementByWeightWithFallback(it => it.InterestLevel + (1 / (1 + it.Uses)));
+                        InitializeArt(art, selected);
+                    });
+                    options.Add(option);
+                }
+                Find.WindowStack.Add(new FloatMenu(options));
+            }
+
+            Rect specificRect = new Rect(110f, 270f, 120f, 20f);
+            if (Widgets.ButtonText(specificRect, "Reroll Specific"))
             {
                 List<FloatMenuOption> options = new List<FloatMenuOption>();
                 foreach (TaleDef taleDef in from def in DefDatabase<TaleDef>.AllDefs orderby def.defName select def)
@@ -66,6 +86,7 @@ namespace ArtReroll
                 }
                 Find.WindowStack.Add(new FloatMenu(options));
             }
+
 
             Rect rect3 = new Rect(230f, 270f, 120f, 20f);
             if (Widgets.ButtonText(rect3, "Reroll Colonist"))
